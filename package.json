@@ -1,0 +1,27 @@
+{
+  "name": "vendar",
+  "version": "1.0.0",
+  "description": "The server to a rent a shelf management business",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npc nodemon server.js"
+  },
+  "author": "Dennis Sammy",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "mongoose": "^8.1.3",
+    "nodemailer": "^6.9.9",
+    "nodemon": "^3.0.3",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.4"
+  }
+}
