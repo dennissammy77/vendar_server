@@ -35,7 +35,20 @@ const create_client_account = (async(req, res)=>{
 				account_type:			payload?.account_type
 		});
 		if (payload?.account_type === 'admin'){
-			Create_Admin_Schema(NewClient);
+			await Create_Admin_Schema(NewClient);
+			await Create_AccountStatus_Schema(NewClient)
+		}
+		if (payload?.account_type === 'staff'){
+			await Create_Staff_Schema(NewClient);
+			await Create_AccountStatus_Schema(NewClient)
+		}
+		if (payload?.account_type === 'vendor'){
+			await Create_Vendor_Schema(NewClient);
+			await Create_AccountStatus_Schema(NewClient)
+		}
+		if (payload?.account_type === 'customer'){
+			await Create_Customer_Schema(NewClient);
+			await Create_AccountStatus_Schema(NewClient)
 		}
 		return res.status(200).send(Access_Token);
 	}catch(err){
@@ -44,9 +57,11 @@ const create_client_account = (async(req, res)=>{
 	}
 });
 
-const Create_Admin_Schema=async({User})=>{
+const Create_Admin_Schema=async(User)=>{
 	try{
+		console.log(User)
 		const NewAdmin = await Admin.create({
+			client_ref:	User?._id,
 			role: '',
 		})
 		const id = User?._id;
@@ -60,9 +75,10 @@ const Create_Admin_Schema=async({User})=>{
 	}
 }
 
-const Create_Staff_Schema=async({User})=>{
+const Create_Staff_Schema=async(User)=>{
 	try{
 		const NewStaff = await Staff.create({
+			client_ref:	User?._id,
 			role: '',
 		})
 		const id = User?._id;
@@ -76,9 +92,10 @@ const Create_Staff_Schema=async({User})=>{
 	}
 }
 
-const Create_Vendor_Schema=async({User})=>{
+const Create_Vendor_Schema=async(User)=>{
 	try{
 		const NewVendor = await Vendor.create({
+			client_ref:	User?._id,
 			products: [],
 			transactions:	[]
 		})
@@ -93,9 +110,10 @@ const Create_Vendor_Schema=async({User})=>{
 	}
 }
 
-const Create_Customer_Schema=async({User})=>{
+const Create_Customer_Schema=async(User)=>{
 	try{
 		const NewCustomer = await Customer.create({
+			client_ref:	User?._id,
 			gender: '',
 			address: ''
 		})
@@ -110,22 +128,26 @@ const Create_Customer_Schema=async({User})=>{
 	}
 }
 
-// const Create_Customer_Schema=async({User})=>{
-// 	try{
-// 		const NewCustomer = await Customer.create({
-// 			gender: '',
-// 			address: ''
-// 		})
-// 		const id = User?._id;
-// 		const query = {_id:id};
-// 		const updateClient = {
-// 			customer_account_ref: NewCustomer?._id
-// 		}
-// 		await Client.updateOne(query,updateClient)
-// 	}catch(err){
-// 		console.log(err)
-// 	}
-// }
+const Create_AccountStatus_Schema=async(User)=>{
+	try{
+		const NewStatus = await AccountStatus.create({
+			client_ref:	User?._id,
+			suspension_status:	false,
+			suspension_reason:	'',
+			approval_status:	false,
+			deletion_status:	false,
+			email_status:		false
+		})
+		const id = User?._id;
+		const query = {_id:id};
+		const updateClient = {
+			account_status_ref: NewStatus?._id
+		}
+		await Client.updateOne(query,updateClient)
+	}catch(err){
+		console.log(err)
+	}
+}
 
 module.exports = {
 	create_client_account
