@@ -1,0 +1,21 @@
+{
+  level: 'error',
+  message: 'System Error',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-02T14:17:43.308Z'
+}
+{
+  level: 'error',
+  message: 'System Error',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-02T14:21:19.022Z'
+}
+{
+  level: 'error',
+  message: '::1 - System Error',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-02T14:44:08.992Z'
+}

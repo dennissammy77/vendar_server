@@ -9,15 +9,30 @@ const ClientSchema = new mongoose.Schema({
 	mobile:					{ type: String },
 	password:				{ type: String },
 	account_type:			{ type: String },
+	// vendar company users
+	super_admin_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "SuperAdmin"},
+	super_staff_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "SuperStaff"},
+	// shop owner users
 	admin_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Admin"},
 	staff_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Staff"},
 	vendor_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Vendor"},
 	customer_account_ref:	{ type: mongoose.Schema.Types.ObjectId, ref: "Customer"},
-	account_status_ref:			{ type: mongoose.Schema.Types.ObjectId, ref: "Account_Status"},
+	account_status_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Account_Status"},
 	shop_ref:				{ type: mongoose.Schema.Types.ObjectId, ref: "Shop"},
 	notification_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Notification" }
 });
 
+// vendar company users
+const SuperAdminSchema = new Schema({
+	client_ref:	{ type: String},
+	role:		{ type: String },
+});
+const SuperStaffSchema = new Schema({
+	client_ref:	{ type: String},
+	role:		{ type: String },
+});
+
+// Shop Owners users
 const AdminSchema = new Schema({
 	client_ref:	{ type: String},
 	role:		{ type: String },
@@ -46,10 +61,12 @@ const AccountStatusSchema = new Schema({
 	suspension_reason:	{ type: String },
 	approval_status:	{ type: Boolean },
 	deletion_status:	{ type: Boolean },
-	email_status:		{ type:	Boolean }
+	email_status:		{ type:	Boolean },
 });
 
 const Client = mongoose.model('Client',ClientSchema);
+const SuperAdmin =	mongoose.model('SuperAdmin',SuperAdminSchema);
+const SuperStaff =	mongoose.model('SuperStaff',SuperStaffSchema);
 const Admin =	mongoose.model('Admin',AdminSchema);
 const Staff = mongoose.model('Staff',StaffSchema);
 const Vendor = mongoose.model('Vendor',VendorSchema);
@@ -62,5 +79,7 @@ module.exports = {
 	Staff,
 	Vendor,
 	Customer,
-	AccountStatus
+	AccountStatus,
+	SuperAdmin,
+	SuperStaff
 }
