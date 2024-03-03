@@ -1,11 +1,12 @@
-const Logger = require('../lib/logger.lib.js');
+const logger = require('../lib/logger.lib.js');
+const { ExistingUser } = require('../middlewares/existinguser.middleware.js');
 const {
 	Client,
-	Admin,
-	Staff,
+	ShopAdmin,
 	Vendor,
 	Customer,
-	AccountStatus
+	AccountStatus,
+	SuperAdmin,
 } = require('../models/ClientSchema.js');
 
 /**
@@ -17,26 +18,39 @@ const {
  * it will be easier if I have a shop to join all the different sections
  * 
  */
-const delete_client_account=(async(req,res)=>{
+const delete_account=(async(req,res)=>{
     let ip = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress).split(",")[0];
-	const uid = req?.param?.uid;
-	const flag = req?.param?.flag;
+	const uid = req?.params?.uid;
+	const email = req?.params?.email;
+	const account_type = req?.params?.account_type;
+	const flag = req?.params?.flag;
+
 	if (!uid || !flag){
 		return res.status(403).send({error:true,message:'Missing details'});
 	}
 
-	const result = await ExistingUser(payload.email);
-	if (result){
-		return res.status(200).send({error:true,message:'This Email already has an existing account, try signing in'});
+	const result = await ExistingUser(email);
+	if (!result){
+		return res.status(200).send({error:true,message:'This Email does not have an existing account'});
 	}
-
-	switch(flag){
-		case 'stage':
-			// change account status for all users
+	try {
+		if(flag === 'stage'){
 			await flag_user(uid);
-			break;
-		default:
-			throw new Error('Flag: undefined')
+            return res.status(200).json({error:null,message:'Account Flagged for deletion'});
+		}
+		if(flag === 'deletion'){
+			if(account_type == 'super_admin'){
+				await delete_super_admin_schema(uid);
+				return res.status(200).json({error:null,message:'Account deleted '});
+			}
+			if(account_type == 'shop_admin'){
+				await delete_shop_admin_schema(uid);
+				return res.status(200).json({error:null,message:'Account deleted '});
+			}
+		}
+	} catch (error) {
+		logger.log('error',`${ip} - Error in ${flag} ${account_type} account (${uid})`);
+		return res.status(200).json({error:true,message:`Error in ${flag} account`});
 	}
 });
 
@@ -48,84 +62,51 @@ const flag_user=async(uid)=>{
 	try{
 		await AccountStatus.updateOne(query,updateClient);
 	}catch(err){
-		throw new Error('Flag: undefined')
+		throw new Error('Error while flagging acount for deletion')
 	}
 }
 
-const delete_user=async(uid)=>{
+const delete_client_schema=async(uid)=>{
+	const query = {_id:uid};
+	try{
+		await Client.deleteOne(query);
+	}catch(err){
+		throw new Error('Flag: undefined')
+	}
+}
+const delete_super_admin_schema=async(uid)=>{
+	try{
+		await AccountStatus.deleteOne({client_ref:uid});
+		await SuperAdmin.deleteOne({client_ref:uid});
+		await Client.deleteOne({_id:uid});
+	}catch(err){
+		throw new Error('Flag: undefined')
+	}
+}
+const delete_shop_admin_schema=async(uid)=>{
+	try{
+		await AccountStatus.deleteOne({client_ref:uid});
+		await ShopAdmin.deleteOne({client_ref:uid});
+		await Client.deleteOne({_id:uid});
+	}catch(err){
+		throw new Error('Flag: undefined')
+	}
+}
+const delete_vendor_schema=async(uid)=>{
 	const query = {client_ref:uid};
 	try{
-		await AccountStatus.deleteOne(query);
+		await Vendor.deleteOne(query);
+	}catch(err){
+		throw new Error('Flag: undefined')
+	}
+}
+const delete_customer_schema=async(uid)=>{
+	const query = {client_ref:uid};
+	try{
+		await Customer.deleteOne(query);
 	}catch(err){
 		throw new Error('Flag: undefined')
 	}
 }
 
-//const 
-
-// const delete_client_account=(async(req, res)=>{
-// 	const client_id = req.query.id;
-// 	const deletion_flag = req.query.flag;
-	
-// 	if(!id){
-// 		return res.sendStatus(400);
-// 	}
-// 	// check for deltion flag
-// 	if (!deletion_flag){
-// 		return res.sendStatus(400);
-// 	}
-// 	// check for existing user
-// 	const query = {_id:client_id};
-// 	const result = await Client.findById(query);
-
-// 	if(!result){
-// 		return res.status(400).send('This account does not exist');
-// 	};
-
-// 	// Flag for deletion
-// 	if (deletion_flag === 'hold'){
-// 		const result = await Flag_Account_Deletion(client_id);
-// 		if (result === 'OK'){
-// 			return res.sendStatus(200);
-// 		}
-// 		return res.sendStatus(400);
-// 	}else if(deletion_flag === 'delete'){
-		
-// 	}
-// });
-
-// const Flag_Account_Deletion=async(client_id)=>{
-// 	const query = {client_ref: client_id};
-// 	const updateUser = {
-// 		deletion_status:	true,
-// 	};
-// 	try{
-// 		await AccountStatus.updateOne(query,updateUser).then((response)=>{
-// 			return 'OK'
-// 		})
-// 	}catch(err){
-// 		Logger({level:'error',message:err});
-// 		//return res.status(400).send('Error while flagging account for deletion')
-// 		return null;
-// 	}
-// }
-
-// const delete_account=async(result)=>{
-// 	if (result?.account_type === 'admin'){
-// 		await delete_admin_schema(result);
-// 		await delete_account_status(result);
-// 	}
-// }
-
-// const delete_admin_schema=async({id})=>{
-// 	const query = {client_ref: id};
-// 	try {
-// 		await Admin.findByIdAndDelete(query)
-// 	} catch (error) {
-// 		Logger({level:'error',message:err});
-// 	}
-// 	return ;
-// }
-
-
-module.exports = delete_client_account
+module.exports = delete_account

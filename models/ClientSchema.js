@@ -11,10 +11,8 @@ const ClientSchema = new mongoose.Schema({
 	account_type:			{ type: String },
 	// vendar company users
 	super_admin_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "SuperAdmin"},
-	super_staff_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "SuperStaff"},
 	// shop owner users
-	admin_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Admin"},
-	staff_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Staff"},
+	shop_admin_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "ShopAdmin"},
 	vendor_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Vendor"},
 	customer_account_ref:	{ type: mongoose.Schema.Types.ObjectId, ref: "Customer"},
 	account_status_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Account_Status"},
@@ -27,24 +25,15 @@ const SuperAdminSchema = new Schema({
 	client_ref:	{ type: String},
 	role:		{ type: String },
 });
-const SuperStaffSchema = new Schema({
-	client_ref:	{ type: String},
-	role:		{ type: String },
-});
 
 // Shop Owners users
-const AdminSchema = new Schema({
-	client_ref:	{ type: String},
-	role:		{ type: String },
-});
-
-const StaffSchema = new Schema({
+const ShopAdminSchema = new Schema({
 	client_ref:	{ type: String},
 	role:		{ type: String },
 });
 
 const VendorSchema = new Schema({
-	client_ref:	{ type: String},
+	client_ref:		{ type: String},
 	products:		[{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
 	transcations:	[{type: mongoose.Schema.Types.ObjectId, ref: 'Transaction'}]
 });
@@ -66,20 +55,16 @@ const AccountStatusSchema = new Schema({
 
 const Client = mongoose.model('Client',ClientSchema);
 const SuperAdmin =	mongoose.model('SuperAdmin',SuperAdminSchema);
-const SuperStaff =	mongoose.model('SuperStaff',SuperStaffSchema);
-const Admin =	mongoose.model('Admin',AdminSchema);
-const Staff = mongoose.model('Staff',StaffSchema);
+const ShopAdmin =	mongoose.model('ShopAdmin',ShopAdminSchema);
 const Vendor = mongoose.model('Vendor',VendorSchema);
 const Customer = mongoose.model('Customer',CustomerSchema);
 const AccountStatus = mongoose.model('Account_Status',AccountStatusSchema);
 
 module.exports = {
 	Client,
-	Admin,
-	Staff,
+	ShopAdmin,
 	Vendor,
 	Customer,
 	AccountStatus,
 	SuperAdmin,
-	SuperStaff
 }

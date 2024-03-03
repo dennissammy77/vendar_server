@@ -5,13 +5,11 @@ const JWTGenerator = require('../middlewares/jwtgenerator.middleware.js');
 
 const {
 	Client,
-	Admin,
-	Staff,
+	ShopAdmin,
 	Vendor,
 	Customer,
 	AccountStatus,
 	SuperAdmin,
-	SuperStaff
 } = require('../models/ClientSchema.js');
 
 const create_client_account = (async(req, res)=>{
@@ -49,30 +47,13 @@ const create_client_account = (async(req, res)=>{
 				await Create_Super_Admin_Schema(NewClient);
 				await Create_AccountStatus_Schema(NewClient)
 				break;
-			case 'super_staff':
-				await Create_Super_Staff_Schema(NewClient);
+			case 'shop_admin':
+				await Create_Shop_Admin_Schema(NewClient);
 				await Create_AccountStatus_Schema(NewClient)
 				break;
 			default:
 				throw new Error('account type not defined')
 		}
-
-		// if (payload?.account_type === 'admin'){
-		// 	await Create_Admin_Schema(NewClient);
-		// 	await Create_AccountStatus_Schema(NewClient)
-		// }
-		// if (payload?.account_type === 'staff'){
-		// 	await Create_Staff_Schema(NewClient);
-		// 	await Create_AccountStatus_Schema(NewClient)
-		// }
-		// if (payload?.account_type === 'vendor'){
-		// 	await Create_Vendor_Schema(NewClient);
-		// 	await Create_AccountStatus_Schema(NewClient)
-		// }
-		// if (payload?.account_type === 'customer'){
-		// 	await Create_Customer_Schema(NewClient);
-		// 	await Create_AccountStatus_Schema(NewClient)
-		// }
 		logger.log('info',`${ip} - ${result?.name} signed up`)
 		return res.status(200).json({token:Access_Token,error:null,message:'sign up successful'});
 	}catch(err){
@@ -99,94 +80,23 @@ const Create_Super_Admin_Schema=async(User)=>{
 	}
 }
 
-const Create_Super_Staff_Schema=async(User)=>{
+const Create_Shop_Admin_Schema=async(User)=>{
 	try{
-		const NewSuperStaff = await SuperStaff.create({
+		const NewShopAdmin = await ShopAdmin.create({
 			client_ref:	User?._id,
 			role: '',
 		})
 		const id = User?._id;
 		const query = {_id:id};
 		const updateClient = {
-			super_staff_account_ref: NewSuperStaff?._id
+			shop_admin_account_ref: NewShopAdmin?._id
 		}
 		await Client.updateOne(query,updateClient)
 	}catch(err){
-		console.log(err)
+		logger.log('error',`Failed to create super admin schema and update user details`)
 		return err
 	}
 }
-
-// const Create_Admin_Schema=async(User)=>{
-// 	try{
-// 		console.log(User)
-// 		const NewAdmin = await Admin.create({
-// 			client_ref:	User?._id,
-// 			role: '',
-// 		})
-// 		const id = User?._id;
-// 		const query = {_id:id};
-// 		const updateClient = {
-// 			admin_account_ref: NewAdmin?._id
-// 		}
-// 		await Client.updateOne(query,updateClient)
-// 	}catch(err){
-// 		console.log(err)
-// 	}
-// }
-
-// const Create_Staff_Schema=async(User)=>{
-// 	try{
-// 		const NewStaff = await Staff.create({
-// 			client_ref:	User?._id,
-// 			role: '',
-// 		})
-// 		const id = User?._id;
-// 		const query = {_id:id};
-// 		const updateClient = {
-// 			staff_account_ref: NewStaff?._id
-// 		}
-// 		await Client.updateOne(query,updateClient)
-// 	}catch(err){
-// 		console.log(err)
-// 	}
-// }
-
-// const Create_Vendor_Schema=async(User)=>{
-// 	try{
-// 		const NewVendor = await Vendor.create({
-// 			client_ref:	User?._id,
-// 			products: [],
-// 			transactions:	[]
-// 		})
-// 		const id = User?._id;
-// 		const query = {_id:id};
-// 		const updateClient = {
-// 			vendor_account_ref: NewVendor?._id
-// 		}
-// 		await Client.updateOne(query,updateClient)
-// 	}catch(err){
-// 		console.log(err)
-// 	}
-// }
-
-// const Create_Customer_Schema=async(User)=>{
-// 	try{
-// 		const NewCustomer = await Customer.create({
-// 			client_ref:	User?._id,
-// 			gender: '',
-// 			address: ''
-// 		})
-// 		const id = User?._id;
-// 		const query = {_id:id};
-// 		const updateClient = {
-// 			customer_account_ref: NewCustomer?._id
-// 		}
-// 		await Client.updateOne(query,updateClient)
-// 	}catch(err){
-// 		console.log(err)
-// 	}
-// }
 
 const Create_AccountStatus_Schema=async(User)=>{
 	try{
@@ -209,6 +119,57 @@ const Create_AccountStatus_Schema=async(User)=>{
 	}
 }
 
+const Create_Vendor_Account=(async(req, res)=>{
+	const payload = req.body;
+    let ip = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress).split(",")[0];
+	
+	if (!payload?.email){
+		return res.status(403).send({error:true,message:'Missing details'});
+	}
+	
+	const result = await ExistingUser(payload.email);
+	if (result){
+		return res.status(200).send({error:true,message:'This Email already has an existing account, try signing in'});
+	}
+
+	// hash password
+	const Hashed_Password = Hash_Str(payload?.password);
+	// access token
+	if (payload?.account_type === ''){
+		return res.status(200).send({error:true,message:'account type: undefined'});
+	}
+	try{
+		const NewClient = await Client.create({
+				name:					payload?.name,
+				username:				payload?.username,
+				email:					payload?.email,
+				mobile:					payload?.mobile,
+				password:				Hashed_Password,
+				account_type:			payload?.account_type,
+				shop_ref:				payload?.shop_ref
+		});
+
+		await Create_AccountStatus_Schema(NewClient);
+		const NewVendor = await Vendor.create({
+			client_ref:	User?._id,
+			role: 		'',
+		})
+		const id = User?._id;
+		const query = {_id:id};
+		const updateClient = {
+			vendor_account_ref: NewVendor?._id
+		}
+		await Client.updateOne(query,updateClient);
+
+		logger.log('info',`${ip} - ${result?.name} signed up`)
+		return res.status(200).json({error:null,message:'vendor account created successfully'});
+	}catch(err){
+        logger.log('error',`${ip} - System Error`)
+        return res.sendStatus(500);
+	}
+})
+
 module.exports = {
-	create_client_account
+	create_client_account,
+	Create_Vendor_Account
 }
