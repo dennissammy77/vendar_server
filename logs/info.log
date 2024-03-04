@@ -194,3 +194,38 @@
   label: 'development',
   timestamp: '2024-03-03T20:03:24.550Z'
 }
+{
+  level: 'info',
+  message: '::1 - undefined signed up',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-04T17:51:27.429Z'
+}
+{
+  level: 'info',
+  message: '::1 - undefined signed up',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-04T18:54:22.027Z'
+}
+{
+  level: 'info',
+  message: '::1 - undefined signed up',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-04T18:57:28.793Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-04T19:07:25.163Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-04T19:18:37.028Z'
+}

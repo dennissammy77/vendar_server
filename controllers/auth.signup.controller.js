@@ -11,6 +11,7 @@ const {
 	AccountStatus,
 	SuperAdmin,
 } = require('../models/ClientSchema.js');
+const { welcome_new_user } = require('./email.controller.js');
 
 const create_client_account = (async(req, res)=>{
 	const payload = req.body;
@@ -54,7 +55,8 @@ const create_client_account = (async(req, res)=>{
 			default:
 				throw new Error('account type not defined')
 		}
-		logger.log('info',`${ip} - ${result?.name} signed up`)
+		logger.log('info',`${ip} - ${result?.name} signed up`);
+        welcome_new_user(payload)
 		return res.status(200).json({token:Access_Token,error:null,message:'sign up successful'});
 	}catch(err){
         logger.log('error',`${ip} - System Error`)

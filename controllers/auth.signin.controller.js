@@ -2,6 +2,7 @@ const {ExistingUser} = require('../middlewares/existinguser.middleware.js');
 const bcrypt = require('bcryptjs');
 const JWTGenerator = require('../middlewares/jwtgenerator.middleware.js');
 const logger = require('../lib/logger.lib.js');
+const { signed_in_user } = require('./email.controller.js');
 
 const sign_in_user=(async(req,res)=>{
     const {email, password} = req.body;
@@ -25,6 +26,7 @@ const sign_in_user=(async(req,res)=>{
                 return res.status(200).send({error:true,message:'Your account has been flagged for deletion!'});
             }
             logger.log('info',`${ip} - ${result?.name} signed in`);
+            signed_in_user(result)
             return res.status(200).json({token:Access_Token,error:null,message:'sign in successful'});
         }
         return res.status(200).send({error:true,message:'Invalid credentials'});
