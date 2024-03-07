@@ -229,3 +229,10 @@
   label: 'development',
   timestamp: '2024-03-04T19:18:37.028Z'
 }
+{
+  level: 'info',
+  message: '::1 - undefined signed up',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-07T18:57:17.700Z'
+}
