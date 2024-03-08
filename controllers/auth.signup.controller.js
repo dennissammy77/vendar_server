@@ -56,7 +56,12 @@ const create_client_account = (async(req, res)=>{
 				throw new Error('account type not defined')
 		}
 		logger.log('info',`${ip} - ${result?.name} signed up`);
-        welcome_new_user(payload)
+		const email_payload = {
+			name: payload?.name,
+			email: payload?.email,
+			_id: NewClient?._id
+		}
+        welcome_new_user(email_payload);
 		return res.status(200).json({token:Access_Token,error:null,message:'sign up successful'});
 	}catch(err){
         logger.log('error',`${ip} - System Error`)
@@ -86,7 +91,7 @@ const Create_Shop_Admin_Schema=async(User)=>{
 	try{
 		const NewShopAdmin = await ShopAdmin.create({
 			client_ref:	User?._id,
-			role: '',
+			role: 'manager',
 		})
 		const id = User?._id;
 		const query = {_id:id};

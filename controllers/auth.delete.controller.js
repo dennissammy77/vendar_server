@@ -2,9 +2,6 @@ const logger = require('../lib/logger.lib.js');
 const { ExistingUser } = require('../middlewares/existinguser.middleware.js');
 const {
 	Client,
-	ShopAdmin,
-	Vendor,
-	Customer,
 	AccountStatus,
 	SuperAdmin,
 } = require('../models/ClientSchema.js');
@@ -36,15 +33,13 @@ const delete_account=(async(req,res)=>{
 	try {
 		if(flag === 'stage'){
 			await flag_user(uid);
+            logger.log('info',`${ip} - ${result?.name} flagged account for deletion`);
             return res.status(200).json({error:null,message:'Account Flagged for deletion'});
-		}
+		};
 		if(flag === 'deletion'){
 			if(account_type == 'super_admin'){
 				await delete_super_admin_schema(uid);
-				return res.status(200).json({error:null,message:'Account deleted '});
-			}
-			if(account_type == 'shop_admin'){
-				await delete_shop_admin_schema(uid);
+				logger.log('info',`${ip} - ${result?.name} account has been deleted`);
 				return res.status(200).json({error:null,message:'Account deleted '});
 			}
 		}
@@ -66,14 +61,6 @@ const flag_user=async(uid)=>{
 	}
 }
 
-const delete_client_schema=async(uid)=>{
-	const query = {_id:uid};
-	try{
-		await Client.deleteOne(query);
-	}catch(err){
-		throw new Error('Flag: undefined')
-	}
-}
 const delete_super_admin_schema=async(uid)=>{
 	try{
 		await AccountStatus.deleteOne({client_ref:uid});
@@ -82,31 +69,6 @@ const delete_super_admin_schema=async(uid)=>{
 	}catch(err){
 		throw new Error('Flag: undefined')
 	}
-}
-const delete_shop_admin_schema=async(uid)=>{
-	try{
-		await AccountStatus.deleteOne({client_ref:uid});
-		await ShopAdmin.deleteOne({client_ref:uid});
-		await Client.deleteOne({_id:uid});
-	}catch(err){
-		throw new Error('Flag: undefined')
-	}
-}
-const delete_vendor_schema=async(uid)=>{
-	const query = {client_ref:uid};
-	try{
-		await Vendor.deleteOne(query);
-	}catch(err){
-		throw new Error('Flag: undefined')
-	}
-}
-const delete_customer_schema=async(uid)=>{
-	const query = {client_ref:uid};
-	try{
-		await Customer.deleteOne(query);
-	}catch(err){
-		throw new Error('Flag: undefined')
-	}
-}
+};
 
 module.exports = delete_account

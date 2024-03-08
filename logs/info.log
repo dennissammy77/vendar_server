@@ -1,238 +1,63 @@
 {
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-08T07:25:01.947Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy flagged account for deletion',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-08T07:26:01.815Z'
+}
+{
+  level: 'info',
+  message: '::1 - undefined signed up',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-08T10:12:36.987Z'
+}
+{
+  level: 'info',
+  message: '::1 - undefined signed up',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-08T10:15:31.490Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy has been verified',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-08T10:15:54.847Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-08T10:21:15.372Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account created',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-08T10:22:20.154Z'
+}
+{
   level: 'error',
-  message: 'System Error',
+  message: 'error while sending email to dennissammy77@gmail.com',
   service: 'user-service',
   label: 'development',
-  timestamp: '2024-03-02T14:21:19.022Z'
-}
-{
-  level: 'info',
-  message: 'Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-02T14:22:37.366Z'
+  timestamp: '2024-03-08T10:22:25.348Z'
 }
 {
   level: 'info',
   message: '::1 - Dennis Sammy signed in',
   service: 'user-service',
   label: 'development',
-  timestamp: '2024-03-02T14:25:33.176Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-02T14:27:14.377Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-02T14:28:38.258Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-02T14:30:19.279Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-02T14:31:45.506Z'
-}
-{
-  level: 'error',
-  message: '::1 - System Error',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-02T14:44:08.992Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-02T14:47:47.421Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T17:46:54.359Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T18:19:16.832Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T18:27:13.597Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T18:27:31.038Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T18:27:55.075Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T18:29:32.163Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T18:29:47.137Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T18:31:38.679Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T18:33:30.445Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T18:36:20.830Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T19:17:10.993Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T19:37:16.570Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T19:37:27.453Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T19:41:44.195Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T19:48:18.903Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T19:48:28.794Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T19:49:50.482Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T20:03:04.932Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-03T20:03:24.550Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-04T17:51:27.429Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-04T18:54:22.027Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-04T18:57:28.793Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-04T19:07:25.163Z'
-}
-{
-  level: 'info',
-  message: '::1 - Dennis Sammy signed in',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-04T19:18:37.028Z'
-}
-{
-  level: 'info',
-  message: '::1 - undefined signed up',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-07T18:57:17.700Z'
+  timestamp: '2024-03-08T10:26:29.529Z'
 }

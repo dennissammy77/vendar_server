@@ -1,6 +1,7 @@
 const MailSender = require("../middlewares/mailsender.middleware.js");
 
 const welcome_new_user = (async (data) =>{
+    const Verification_route = process.env.BASE_URL;
     const email_template = `
         <!DOCTYPE html>
         <html lang="en">
@@ -27,7 +28,7 @@ const welcome_new_user = (async (data) =>{
             <p style="color: #666;">Vendar is here to streamline your operations and connect you with the perfect solution. With our innovative platform, You can effortlessly distribute your physical shop into shelves and lease them out to online business owners. Meanwhile, online business owners can easily manage their products and showcase them in your physical locations, all without the overhead costs of maintaining a brick-and-mortar store.</p>
             <p style="color: #666;">Thank you for choosing Vendar. We're excited to embark on this journey with you!</p>
             <p style="text-align: center; margin-top: 30px;">
-                <a href="https://www.yourwebsite.com/verification" style="background-color: #4E2FD7; color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 30px; display: inline-block;">Confirm Email</a>
+                <a href=${Verification_route+'/'+data?.email+'/'+data?._id} style="background-color: #4E2FD7; color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 30px; display: inline-block;">Confirm Email</a>
             </p>
             <p style="color: #666;">Best regards,<br>Dennis Sammy<br>Founder and CEO</p>
         
@@ -57,6 +58,8 @@ const welcome_new_user = (async (data) =>{
     });
 });
 const signed_in_user = (async (data) =>{
+    const Verification_route = process.env.BASE_URL
+
     const email_template = `
         <!DOCTYPE html>
         <html lang="en">
@@ -98,6 +101,61 @@ const signed_in_user = (async (data) =>{
     const payload = {
         receipient_email: data?.email,
         subject : "Sign-in Notification",
+        text: '',
+        template: email_template
+    }
+    await MailSender(payload).then(()=>{
+        console.log('email sent')
+    }).catch((err)=>{
+        console.log(err)
+    });
+});
+const created_account_by_admin = (async (data) =>{
+
+    const email_template = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Created Confirmation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body style="font-family: 'Poppins', sans-serif; background-color: #f4f4f4; padding: 20px;">
+    
+    <table cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: auto; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+      <tr>
+        <td style="padding: 20px;">
+          <img src="https://via.placeholder.com/600x150" alt="Banner" style="width: 100%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 20px;">
+          <p style="color: #666;">Hi ${data?.name},</p>
+          <p style="color: #666;">Welcome to ${data?.company}!</p>
+          <p style="color: #666;">Your account has been successfully created.</p>
+          <p style="color: #666;">To get started, please log in using your credentials sent by your administrator:</p>
+          <p style="color: #666;">We're excited to have you join us. If you have any questions or need assistance, feel free to contact us.</p>
+          <p style="color: #666;">Best regards,</p>
+          <p style="color: #666;">${data?.company}</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 20px; background-color: #f0f0f0; text-align: center;">
+          <p style="color: #999; font-size: 12px;">You received this email because you signed up for an account on our website.</p>
+          <p style="color: #999; font-size: 12px;">&copy; 2024 Vendar. All rights reserved.</p>
+        </td>
+      </tr>
+    </table>
+    
+    </body>
+    </html>     
+    `
+    const payload = {
+        receipient_email: data?.email,
+        subject : "",
         text: '',
         template: email_template
     }
@@ -167,5 +225,6 @@ const verify_user = (async (data) =>{
 module.exports = {
     welcome_new_user,
     signed_in_user,
-    verify_user
+    verify_user,
+    created_account_by_admin
 }

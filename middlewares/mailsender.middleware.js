@@ -15,8 +15,9 @@ const MailSender = async (payload)=>{
     
     Transporter.sendMail(mailOptions, function (err, info){
         if(err){
-            logger.log('error',`${ip} - error while sending email to ${receipient_email}`);
-            throw new Error('error while sending email')
+            //console.log(err)
+            logger.log('error',`error while sending email to ${receipient_email}`);
+            //throw new Error('error while sending email')
         }
     })
 }
