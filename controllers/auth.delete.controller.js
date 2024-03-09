@@ -4,7 +4,10 @@ const {
 	Client,
 	AccountStatus,
 	SuperAdmin,
+	ShopAdmin,
+	Vendor,
 } = require('../models/ClientSchema.js');
+const { deleted_user_account } = require('./email.controller.js');
 
 /**
  * This controller looks forward to deleting a user account as well as all user data 
@@ -39,9 +42,24 @@ const delete_account=(async(req,res)=>{
 		if(flag === 'deletion'){
 			if(account_type == 'super_admin'){
 				await delete_super_admin_schema(uid);
-				logger.log('info',`${ip} - ${result?.name} account has been deleted`);
+				logger.log('info',`${ip} - ${result?.name} account(super-admin) has been deleted`);
+				deleted_user_account(result)
 				return res.status(200).json({error:null,message:'Account deleted '});
 			}
+			if(account_type == 'shop_admin'){
+				await delete_shop_admin_schema(uid);
+				logger.log('info',`${ip} - ${result?.name} account(shop-admin) has been deleted`);
+				deleted_user_account(result)
+				return res.status(200).json({error:null,message:'Account deleted '});
+			}
+			if(account_type == 'vendor'){
+				await delete_vendor_schema(uid);
+				logger.log('info',`${ip} - ${result?.name} account(vendor) has been deleted`);
+				deleted_user_account(result)
+				return res.status(200).json({error:null,message:'Account deleted '});
+			}
+		}else{
+			return res.status(200).json({error:true,message:`Error in ${flag} account`});
 		}
 	} catch (error) {
 		logger.log('error',`${ip} - Error in ${flag} ${account_type} account (${uid})`);
@@ -65,6 +83,24 @@ const delete_super_admin_schema=async(uid)=>{
 	try{
 		await AccountStatus.deleteOne({client_ref:uid});
 		await SuperAdmin.deleteOne({client_ref:uid});
+		await Client.deleteOne({_id:uid});
+	}catch(err){
+		throw new Error('Flag: undefined')
+	}
+};
+const delete_shop_admin_schema=async(uid)=>{
+	try{
+		await AccountStatus.deleteOne({client_ref:uid});
+		await ShopAdmin.deleteOne({client_ref:uid});
+		await Client.deleteOne({_id:uid});
+	}catch(err){
+		throw new Error('Flag: undefined')
+	}
+};
+const delete_vendor_schema=async(uid)=>{
+	try{
+		await AccountStatus.deleteOne({client_ref:uid});
+		await Vendor.deleteOne({client_ref:uid});
 		await Client.deleteOne({_id:uid});
 	}catch(err){
 		throw new Error('Flag: undefined')

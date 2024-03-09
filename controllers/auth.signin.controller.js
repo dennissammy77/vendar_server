@@ -1,6 +1,6 @@
 const {ExistingUser} = require('../middlewares/existinguser.middleware.js');
 const bcrypt = require('bcryptjs');
-const JWTGenerator = require('../middlewares/jwtgenerator.middleware.js');
+const {AuthTokenGenerator} = require('../middlewares/jwtgenerator.middleware.js');
 const logger = require('../lib/logger.lib.js');
 const { signed_in_user } = require('./email.controller.js');
 
@@ -18,7 +18,7 @@ const sign_in_user=(async(req,res)=>{
         
         if(bcrypt.compareSync(password, result?.password)){
             // Check if user's account has been suspended or deleted
-            const Access_Token = JWTGenerator(result);
+            const Access_Token = AuthTokenGenerator(result);
             if (result?.account_status_ref?.suspension_status){
                 return res.status(200).send({error:true,message:'Your account has been suspended! You did not follow our company guidelines.'});
             }
@@ -29,9 +29,9 @@ const sign_in_user=(async(req,res)=>{
             signed_in_user(result)
             return res.status(200).json({token:Access_Token,error:null,message:'sign in successful'});
         }
-        return res.status(200).send({error:true,message:'Invalid credentials'});
+        return res.status(200).send({error:true,message:'Incorrect password or email'});
     }catch(err){
-        logger.log('error',`${ip} - System Error`)
+        logger.log('error',`${ip} - System Error[on sign in]`)
         return res.sendStatus(500);
     }
 });

@@ -61,3 +61,422 @@
   label: 'development',
   timestamp: '2024-03-08T10:26:29.529Z'
 }
+{
+  level: 'info',
+  message: '::1 - undefined signed up',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T09:46:21.172Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T09:47:39.819Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account has been deleted',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T09:49:56.566Z'
+}
+{
+  level: 'info',
+  message: '::1 - undefined signed up',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:09:47.331Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy has been verified',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:11:25.408Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy has been verified',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:11:25.429Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:25:35.320Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account created',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:25:44.597Z'
+}
+{
+  level: 'error',
+  message: 'error while sending email to dennissammy77@gmail.com',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:25:49.384Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:29:46.368Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account has been deleted',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:29:56.171Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:38:43.466Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account created',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:38:56.153Z'
+}
+{
+  level: 'error',
+  message: 'error while sending email to dennissammy77@gmail.com',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:38:59.836Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:42:49.440Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account has been deleted',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:42:59.815Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account has been deleted',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:44:20.553Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account has been deleted',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:44:55.633Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:48:57.024Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account created',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:49:51.993Z'
+}
+{
+  level: 'error',
+  message: 'error while sending email to dennissammy77@gmail.com',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:49:55.889Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account has been deleted',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T10:50:53.129Z'
+}{
+  level: 'error',
+  message: '::1 - System Error',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T11:14:17.722Z'
+}
+{
+  level: 'error',
+  message: '::1 - System Error',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T11:15:14.244Z'
+}
+{
+  level: 'error',
+  message: '::1 - System Error',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T11:15:23.445Z'
+}
+{
+  level: 'error',
+  message: '::1 - System Error',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T11:17:00.052Z'
+}
+{
+  level: 'error',
+  message: '::1 - System Error',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T11:17:10.250Z'
+}
+{
+  level: 'error',
+  message: '::1 - System Error',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T11:19:42.576Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T11:20:45.579Z'
+}
+{
+  level: 'error',
+  message: '::1 - System Error-[sending otp code email]',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T11:59:26.098Z'
+}
+{
+  level: 'info',
+  message: '::1 - undefined signed up',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T12:12:44.555Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T12:12:55.937Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T14:51:59.241Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T15:20:54.994Z'
+}
+{
+  level: 'error',
+  message: 'error while sending email to dennissammy77@gmail.com',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T15:21:29.272Z'
+}
+{
+  level: 'error',
+  message: 'error while sending email to astrodennis77@gmail.com',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T15:23:24.060Z'
+}
+{
+  level: 'error',
+  message: '::1 - System Error [Creating Vendor account]',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T15:42:27.940Z'
+}
+{
+  level: 'error',
+  message: '::1 - System Error [Creating Vendor account]',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T15:43:20.184Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account - (vendor) created',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T15:44:34.517Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy flagged account for deletion',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T15:47:53.110Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account(vendor) has been deleted',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T15:48:14.585Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy account - (vendor) created',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T15:52:05.441Z'
+}
+{
+  level: 'info',
+  message: '::1 - Dennis Sammy signed in',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:23:50.299Z'
+}
+{
+  level: 'info',
+  message: 'server listening on http://localhost:5001',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:25:51.272Z'
+}
+{
+  level: 'info',
+  message: 'server listening on http://localhost:5001',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:26:50.066Z'
+}
+{
+  level: 'info',
+  message: 'db connected succssfully',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:26:51.411Z'
+}
+{
+  level: 'info',
+  message: 'server listening on http://localhost:5001',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:27:09.990Z'
+}
+{
+  level: 'info',
+  message: 'db connected succssfully',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:27:11.465Z'
+}
+{
+  level: 'info',
+  message: 'server listening on http://localhost:5001',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:28:27.449Z'
+}
+{
+  level: 'info',
+  message: 'db connected succssfully',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:28:29.032Z'
+}
+{
+  level: 'info',
+  message: 'server listening on http://localhost:5001',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:31:56.069Z'
+}
+{
+  level: 'info',
+  message: 'db connected succssfully',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:31:58.215Z'
+}
+{
+  level: 'info',
+  message: 'server listening on http://localhost:5001',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:33:18.127Z'
+}
+{
+  level: 'info',
+  message: 'db connected succssfully',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:33:19.864Z'
+}
+{
+  level: 'info',
+  message: 'server listening on http://localhost:5001',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:33:22.690Z'
+}
+{
+  level: 'info',
+  message: 'db connected succssfully',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:33:23.985Z'
+}
+{
+  level: 'info',
+  message: 'server listening on http://localhost:5001',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:33:53.701Z'
+}
+{
+  level: 'info',
+  message: 'db connected succssfully',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:33:54.971Z'
+}
+{
+  level: 'info',
+  message: 'server listening on http://localhost:5001',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:34:02.537Z'
+}
+{
+  level: 'info',
+  message: 'db connected succssfully',
+  service: 'user-service',
+  label: 'development',
+  timestamp: '2024-03-09T16:34:03.875Z'
+}

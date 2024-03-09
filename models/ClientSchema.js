@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ClientSchema = new mongoose.Schema({
-	//
 	name:					{ type: String },
 	username:				{ type: String },
 	email:					{ type: String , unique:true },
@@ -16,6 +15,7 @@ const ClientSchema = new mongoose.Schema({
 	vendor_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Vendor"},
 	customer_account_ref:	{ type: mongoose.Schema.Types.ObjectId, ref: "Customer"},
 	account_status_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Account_Status"},
+	// company details		
 	shop_ref:				{ type: mongoose.Schema.Types.ObjectId, ref: "Shop"},
 	notification_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Notification" }
 });

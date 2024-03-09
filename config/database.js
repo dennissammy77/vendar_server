@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const logger = require('../lib/logger.lib');
 require('dotenv').config();
 
 const user_name = process.env.MONGODB_USER
@@ -12,9 +13,11 @@ exports.connect=()=>{
 	mongoose.connect(
 		URI
 	).then(()=>{
-		console.log('db connected succssfully')
+		logger.log('info',`db connected succssfully`);
+		//console.log('db connected succssfully')
 	}).catch((err)=>{
-		console.log(err);
+		logger.log('error',`error while connecting the database`);
+		//console.log(err);
 		return err;
 	})
 }
