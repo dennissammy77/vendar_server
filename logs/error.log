@@ -1,104 +1,28 @@
 {
   level: 'error',
-  message: 'error while sending email to dennissammy77@gmail.com',
+  message: '::1 - System Error-[updating shop details shop_name: 123MJ&Shelves shop_id: 65f5c64ce0766d37b943fe56',
   service: 'user-service',
   label: 'development',
-  timestamp: '2024-03-08T10:22:25.348Z'
+  timestamp: '2024-03-16T16:26:14.155Z'
 }
 {
   level: 'error',
-  message: 'error while sending email to dennissammy77@gmail.com',
+  message: '::1 - System Error-[updating shop details shop_name: 123MJ&Shelves shop_id: 65f5c64ce0766d37b943fe56',
   service: 'user-service',
   label: 'development',
-  timestamp: '2024-03-09T10:25:49.384Z'
+  timestamp: '2024-03-16T16:26:41.779Z'
 }
 {
   level: 'error',
-  message: 'error while sending email to dennissammy77@gmail.com',
+  message: '::1 - System Error-[updating shop details shop_name: MJ&Shelves shop_id: 65f5c64ce0766d37b943fe56',
   service: 'user-service',
   label: 'development',
-  timestamp: '2024-03-09T10:38:59.836Z'
+  timestamp: '2024-03-16T16:27:44.440Z'
 }
 {
   level: 'error',
-  message: 'error while sending email to dennissammy77@gmail.com',
+  message: '::1 - System Error-[updating shop details shop_name: MJ&Shelves shop_id: 65f5c64ce0766d37b943fe56',
   service: 'user-service',
   label: 'development',
-  timestamp: '2024-03-09T10:49:55.889Z'
-}{
-  level: 'error',
-  message: '::1 - System Error',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T11:14:17.722Z'
-}
-{
-  level: 'error',
-  message: '::1 - System Error',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T11:15:14.244Z'
-}
-{
-  level: 'error',
-  message: '::1 - System Error',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T11:15:23.445Z'
-}
-{
-  level: 'error',
-  message: '::1 - System Error',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T11:17:00.052Z'
-}
-{
-  level: 'error',
-  message: '::1 - System Error',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T11:17:10.250Z'
-}
-{
-  level: 'error',
-  message: '::1 - System Error',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T11:19:42.576Z'
-}
-{
-  level: 'error',
-  message: '::1 - System Error-[sending otp code email]',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T11:59:26.098Z'
-}
-{
-  level: 'error',
-  message: 'error while sending email to dennissammy77@gmail.com',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T15:21:29.272Z'
-}
-{
-  level: 'error',
-  message: 'error while sending email to astrodennis77@gmail.com',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T15:23:24.060Z'
-}
-{
-  level: 'error',
-  message: '::1 - System Error [Creating Vendor account]',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T15:42:27.940Z'
-}
-{
-  level: 'error',
-  message: '::1 - System Error [Creating Vendor account]',
-  service: 'user-service',
-  label: 'development',
-  timestamp: '2024-03-09T15:43:20.184Z'
+  timestamp: '2024-03-16T16:28:06.394Z'
 }

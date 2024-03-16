@@ -31,3 +31,8 @@ const ShopStatusSchema = new Schema({
 	email_status:		{ type:	Boolean },
     publish_status:     { type: Boolean}
 });
+
+const Shop = mongoose.model('Shop', ShopSchema);
+const ShopStatus = mongoose.model('Shop_Status', ShopStatusSchema);
+
+module.exports = { Shop, ShopStatus };
