@@ -1,8 +1,8 @@
-const {ExistingUser} = require('../middlewares/existinguser.middleware.js');
+const {ExistingUser} = require('../../middlewares/existinguser.middleware.js');
 const bcrypt = require('bcryptjs');
-const {AuthTokenGenerator} = require('../middlewares/jwtgenerator.middleware.js');
-const logger = require('../lib/logger.lib.js');
-const { signed_in_user } = require('./email.controller.js');
+const {AuthTokenGenerator} = require('../../middlewares/jwtgenerator.middleware.js');
+const logger = require('../../lib/logger.lib.js');
+const { signed_in_user } = require('../email.controller.js');
 
 const sign_in_user=(async(req,res)=>{
     const {email, password} = req.body;

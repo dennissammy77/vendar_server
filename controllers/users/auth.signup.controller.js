@@ -1,17 +1,15 @@
-const logger = require('../lib/logger.lib.js');
-const {ExistingUser} = require('../middlewares/existinguser.middleware.js');
-const Hash_Str = require('../middlewares/hashstr.middleware.js');
-const {AuthTokenGenerator} = require('../middlewares/jwtgenerator.middleware.js');
+const logger = require('../../lib/logger.lib.js');
+const {ExistingUser} = require('../../middlewares/existinguser.middleware.js');
+const Hash_Str = require('../../middlewares/hashstr.middleware.js');
+const {AuthTokenGenerator} = require('../../middlewares/jwtgenerator.middleware.js');
 
 const {
 	Client,
 	ShopAdmin,
-	Vendor,
-	Customer,
 	AccountStatus,
 	SuperAdmin,
-} = require('../models/ClientSchema.js');
-const { welcome_new_user } = require('./email.controller.js');
+} = require('../../models/ClientSchema.js');
+const { welcome_new_user } = require('../email.controller.js');
 
 const create_client_account = (async(req, res)=>{
 	const payload = req.body;

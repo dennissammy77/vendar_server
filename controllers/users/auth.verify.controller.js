@@ -1,7 +1,7 @@
-const {ExistingUser} = require('../middlewares/existinguser.middleware.js');
-const logger = require('../lib/logger.lib.js');
-const { AccountStatus } = require('../models/ClientSchema.js');
-const { verify_user } = require('./email.controller.js');
+const {ExistingUser} = require('../../middlewares/existinguser.middleware.js');
+const logger = require('../../lib/logger.lib.js');
+const { AccountStatus } = require('../../models/ClientSchema.js');
+const { verify_user } = require('../email.controller.js');
 
 const Verify_User=(async(req,res)=>{
     const email = req.params.email;

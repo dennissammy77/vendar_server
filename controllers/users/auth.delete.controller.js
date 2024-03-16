@@ -1,13 +1,13 @@
-const logger = require('../lib/logger.lib.js');
-const { ExistingUser } = require('../middlewares/existinguser.middleware.js');
+const logger = require('../../lib/logger.lib.js');
+const { ExistingUser } = require('../../middlewares/existinguser.middleware.js');
 const {
 	Client,
 	AccountStatus,
 	SuperAdmin,
 	ShopAdmin,
 	Vendor,
-} = require('../models/ClientSchema.js');
-const { deleted_user_account } = require('./email.controller.js');
+} = require('../../models/ClientSchema.js');
+const { deleted_user_account } = require('../email.controller.js');
 
 /**
  * This controller looks forward to deleting a user account as well as all user data 

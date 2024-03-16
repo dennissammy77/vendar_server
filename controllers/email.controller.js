@@ -92,7 +92,7 @@ const signed_in_user = (async (data) =>{
         <tr>
             <td style="padding: 20px; background-color: #f0f0f0; text-align: center;">
             <p style="color: #999; font-size: 12px;">You are receiving this email as a confirmation of your sign-in to our platform.</p>
-            <p style="color: #999; font-size: 12px;">&copy; 2024 [Your Company Name]. All rights reserved.</p>
+            <p style="color: #999; font-size: 12px;">&copy; 2024 Vendar. All rights reserved.</p>
             </td>
         </tr>
         </table>
@@ -203,7 +203,7 @@ const verify_user = (async (data) =>{
             </p>
             <p style="color: #666;">If the above button does not work, you can also copy and paste the following link into your browser:</p>
             <p style="color: #666; text-align: center;">${Verification_route+'/'+data?.email+'/'+data?._id}</p>
-            <p style="color: #666;">This link will expire in 24 hours for security reasons. If you did not sign up for our service, you can safely ignore this email.</p>
+            <p style="color: #666;">This link will expire in 30 minutes for security reasons. If you did not sign up for our service, you can safely ignore this email.</p>
             <p style="color: #666;">Best regards,<br>Team from Vendar</p>
             </td>
         </tr>
@@ -508,6 +508,65 @@ const password_reset_confirmation = (async (data) =>{
     });
 });
 
+const new_shop_created_confirmation = (async (data) =>{
+    const email_template = `
+    <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>New Store Created</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+            <style>
+                body {
+                    font-family: 'Poppins', sans-serif;
+                    background-color: #f4f4f4;
+                    padding: 20px;
+                    margin: 0;
+                }
+            </style>
+        </head>
+        <body>
+            <table cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: auto; background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                <tr>
+                    <td style="padding: 20px; background-color: #4E2FD7; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                    <h2 style="color: #ffffff; text-align: center; font-size: 32px;">New Store Created</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px;">
+                    <p style="color: #666;">Hello ${data?.name},</p>
+                    <p style="color: #666;">We're thrilled to confirm that you've successfully created ${data?.company}, a new store for your business.</p>
+                    <p style="color: #666;">Your store is now ready to showcase your products and services to customers.</p>
+                    <p style="color: #666;">If you didn't initiate this process, please contact us immediately.</p>
+                    <p style="color: #666;">Best regards,<br>Team from Vendar.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px; background-color: #f0f0f0; text-align: center;">
+                    <p style="color: #999; font-size: 12px;">You are receiving this email as a confirmation of your request to create a store to our platform.</p>
+                    <p style="color: #999; font-size: 12px;">&copy; 2024 Vendar. All rights reserved.</p>
+                    </td>
+                </tr>
+            </table>
+        </body>
+        </html> 
+    `
+    const payload = {
+        receipient_email: data?.email,
+        subject : "New Store Created",
+        text: '',
+        template: email_template
+    }
+    await MailSender(payload).then(()=>{
+		logger.log('info',`New Store Created confirmation email sent successfully: ${data?.email}`);
+    }).catch((err)=>{
+		logger.log('info',`error while sending New Store Created confirmation email: ${data?.email}`);
+    });
+});
+
 
 module.exports = {
     welcome_new_user,
@@ -516,5 +575,6 @@ module.exports = {
     created_account_by_admin,
     deleted_user_account,
     password_reset_otp_code,
-    password_reset_confirmation
+    password_reset_confirmation,
+    new_shop_created_confirmation
 }

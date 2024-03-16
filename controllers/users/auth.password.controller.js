@@ -1,10 +1,10 @@
-const logger = require("../lib/logger.lib");
-const { ExistingUser } = require("../middlewares/existinguser.middleware");
+const logger = require("../../lib/logger.lib");
+const { ExistingUser } = require("../../middlewares/existinguser.middleware");
 const bcrypt = require('bcryptjs');
-const { password_reset_otp_code, password_reset_confirmation } = require("./email.controller");
-const {CodeTokenGenerator} = require("../middlewares/jwtgenerator.middleware");
-const Hash_Str = require("../middlewares/hashstr.middleware");
-const { Client } = require("../models/ClientSchema");
+const { password_reset_otp_code, password_reset_confirmation } = require("../email.controller");
+const {CodeTokenGenerator} = require("../../middlewares/jwtgenerator.middleware");
+const Hash_Str = require("../../middlewares/hashstr.middleware");
+const { Client } = require("../../models/ClientSchema");
 
 const SendOtpCode=(async(req,res)=>{
     const email = req.params.email;
