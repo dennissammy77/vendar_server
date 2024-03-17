@@ -2,6 +2,7 @@ const logger = require("../../lib/logger.lib");
 const { ExistingUser } = require("../../middlewares/existinguser.middleware");
 const Hash_Str = require("../../middlewares/hashstr.middleware");
 const { Client, AccountStatus, SuperAdmin, ShopAdmin, Vendor } = require("../../models/ClientSchema");
+const { Shop } = require("../../models/ShopSchema");
 const { created_account_by_admin } = require("../email.controller");
 
 const create_super_admin_account=(async(req,res)=>{
@@ -61,6 +62,11 @@ const create_shop_admin_account=(async(req,res)=>{
 	if (payload?.account_type === '' || payload?.role === '' || payload?.shop_ref === ''){
 		return res.status(200).send({error:true,message:'account required details: undefined'});
 	}
+	const query = {_id:payload?.shop_ref};
+	const existing_shop = await Shop.findOne(query);
+	if (!existing_shop){
+		return res.status(200).send({error:true,message:'A shop with this name does not exists'});
+	}
     try{
 		const NewClient = await Client.create({
 				name:					payload?.name,
@@ -71,6 +77,8 @@ const create_shop_admin_account=(async(req,res)=>{
 				account_type:			payload?.account_type,
 				shop_ref:				payload?.shop_ref
 		});
+		existing_shop?.staff.push(NewClient);
+        existing_shop.save()
 		const user_payload = {
 			_id: NewClient?._id,
 			role: payload?.role
@@ -81,7 +89,7 @@ const create_shop_admin_account=(async(req,res)=>{
 		const email_payload = {
 			name: payload?.name,
 			email: payload?.email,
-			company: payload?.company,
+			company: existing_shop?.name,
 			password:	payload?.password,
 		}
         created_account_by_admin(email_payload)
@@ -105,6 +113,11 @@ const create_vendor_account=(async(req,res)=>{
 	if (payload?.account_type === '' || payload?.shop_ref === ''){
 		return res.status(200).send({error:true,message:'account required details: undefined'});
 	}
+	const query = {_id:payload?.shop_ref};
+	const existing_shop = await Shop.findOne(query);
+	if (!existing_shop){
+		return res.status(200).send({error:true,message:'A shop with this name does not exists'});
+	}
     try{
 		const NewClient = await Client.create({
 				name:					payload?.name,
@@ -115,6 +128,8 @@ const create_vendor_account=(async(req,res)=>{
 				account_type:			payload?.account_type,
 				shop_ref:				payload?.shop_ref
 		});
+		existing_shop?.vendors.push(NewClient);
+        existing_shop.save()
 		const user_payload = {
 			_id: NewClient?._id,
 		}
@@ -124,7 +139,7 @@ const create_vendor_account=(async(req,res)=>{
 		const email_payload = {
 			name: payload?.name,
 			email: payload?.email,
-			company: payload?.company,
+			company: result?.name,
 			password:	payload?.password,
 		}
         created_account_by_admin(email_payload)

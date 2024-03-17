@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const token_error = require('../lib/token_error/token_error');
+const token_error = require('../lib/html_template/token_error.js');
 
 
 const AuthenticateToken = (req, res, next) =>{

@@ -45,7 +45,7 @@ const Create_New_Shop = (async(req,res)=>{
             tiktok_url:     payload?.tiktok_url,
             whatsapp_url:   payload?.whatsapp_url,
             // owner ref
-            owner_ref_id:   payload?.result?._id,
+            owner_ref_id:   result?._id,
             staff:          [],    
             vendors:        [],
             customers:      [],
@@ -53,6 +53,8 @@ const Create_New_Shop = (async(req,res)=>{
             transactions:   [],
             notifications:  []
         });
+        NewShop?.staff.push(result);
+        NewShop.save()
         const shop_payload = {
             _id: NewShop._id,
             uid: result?._id
@@ -67,7 +69,8 @@ const Create_New_Shop = (async(req,res)=>{
         await Update_Client(shop_payload);
 		logger.log('info',`${ip} - shop: ${payload?.name} shop_id: ${NewShop?._id} created`);
 		return res.status(200).json({error:null,message:'store created successfully'});
-    }catch(e){
+    }catch(error){
+        console.log(error);
         logger.log('error',`${ip} - System Error-[creating new shop account: uid: ${result?._id}, email: ${result?.email}]`);
         return res.sendStatus(500);
     }

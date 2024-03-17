@@ -12,9 +12,9 @@ const ShopSchema = new mongoose.Schema({
     tiktok_url:     { type: String},
     whatsapp_url:   { type: String},
     // owner ref
-    owner_ref_id:   { type: mongoose.Schema.Types.ObjectId, ref: "Admin"},
-    staff:          [{ type: mongoose.Schema.Types.ObjectId, ref: "Staff"}],    
-    vendors:        [{ type: mongoose.Schema.Types.ObjectId, ref: "Vendor"}],
+    owner_ref_id:   { type: mongoose.Schema.Types.ObjectId, ref: "Client"},
+    staff:          [{ type: mongoose.Schema.Types.ObjectId, ref: "Client"}],
+    vendors:        [{ type: mongoose.Schema.Types.ObjectId, ref: "Client"}],
     customers:      [{ type: mongoose.Schema.Types.ObjectId, ref: "Customer"}],
     products:       [{ type: mongoose.Schema.Types.ObjectId, ref: "Product"}],
     transactions:   [{ type: mongoose.Schema.Types.ObjectId, ref: "Transactions"}],

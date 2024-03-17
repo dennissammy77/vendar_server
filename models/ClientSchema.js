@@ -9,15 +9,15 @@ const ClientSchema = new mongoose.Schema({
 	password:				{ type: String },
 	account_type:			{ type: String },
 	// vendar company users
-	super_admin_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "SuperAdmin"},
+	super_admin_account_ref:	{ type: mongoose.Schema.Types.ObjectId, ref: "SuperAdmin"},
 	// shop owner users
 	shop_admin_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "ShopAdmin"},
-	vendor_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Vendor"},
-	customer_account_ref:	{ type: mongoose.Schema.Types.ObjectId, ref: "Customer"},
-	account_status_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Account_Status"},
+	vendor_account_ref:			{ type: mongoose.Schema.Types.ObjectId, ref: "Vendor"},
+	customer_account_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Customer"},
+	account_status_ref:			{ type: mongoose.Schema.Types.ObjectId, ref: "Account_Status"},
 	// company details		
-	shop_ref:				{ type: mongoose.Schema.Types.ObjectId, ref: "Shop"},
-	notification_ref:		{ type: mongoose.Schema.Types.ObjectId, ref: "Notification" }
+	shop_ref:					{ type: mongoose.Schema.Types.ObjectId, ref: "Shop"},
+	notification_ref:			{ type: mongoose.Schema.Types.ObjectId, ref: "Notification" }
 });
 
 // vendar company users
