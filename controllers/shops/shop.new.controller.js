@@ -70,7 +70,6 @@ const Create_New_Shop = (async(req,res)=>{
 		logger.log('info',`${ip} - shop: ${payload?.name} shop_id: ${NewShop?._id} created`);
 		return res.status(200).json({error:null,message:'store created successfully'});
     }catch(error){
-        console.log(error);
         logger.log('error',`${ip} - System Error-[creating new shop account: uid: ${result?._id}, email: ${result?.email}]`);
         return res.sendStatus(500);
     }
