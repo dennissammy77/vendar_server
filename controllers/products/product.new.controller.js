@@ -46,7 +46,7 @@ const Create_New_Product = (async(req, res)=>{
         existing_shop.save()
         await Create_ProductStatus_Schema(NewProduct);
         logger.log('info',`${ip} - Product ${payload?.name} added to shop: ${existing_shop?.name} shop_id: ${existing_shop?._id} created`);
-		return res.status(200).json({error:null,message:'store created successfully'});
+		return res.status(200).json({error:null,message:'product created successfully'});
     } catch (error) {
         logger.log('error',`${ip} - System Error-[creating new product for a user id: ${result?._id}, email: ${result?.email}, shop_id: ${payload?.shop_ref}]`);
         return res.sendStatus(500);
@@ -72,4 +72,8 @@ const Create_ProductStatus_Schema=async(Product_Details)=>{
 	}catch(err){
         logger.log('error',`${ip} - System Error [Creating product status item]`);
 	}
+}
+
+module.exports = {
+	Create_New_Product
 }
