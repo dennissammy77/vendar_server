@@ -1,5 +1,5 @@
 const logger = require('../../lib/logger.lib');
-const { ExistingUser } = require('../../middleware/existinguser.middleware');
+const { ExistingUser } = require('../../middlewares/existinguser.middleware.js');
 const { Product } = require('../../models/ProductSchema');
 const { Shop } = require('../../models/ShopSchema');
 
@@ -11,7 +11,7 @@ const Create_New_Product = (async(req, res)=>{
     if (!payload){
         return res.status(403).send({error:true,message:'Missing details'});
     }
-    const result = await ExistingUser(payload?.email);
+    const result = await ExistingUser(email);
     try {
         if (!result){
             return res.status(200).send({error:true,message:'This Email does not have an existing account, try signing up'});
@@ -25,7 +25,7 @@ const Create_New_Product = (async(req, res)=>{
         if (result?.account_status_ref?.deletion_status){
             return res.status(200).send({error:true,message:'This account has been flagged for deletion.'});
         }
-        const query = {shop_ref:shop_ref};
+        const query = {shop_ref:payload?.shop_ref};
         const existing_shop = await Shop.findOne(query);
         if (!existing_shop){
             return res.status(200).send({error:true,message:'This shop does not exist'});
