@@ -3,6 +3,7 @@ const { Shop, ShopStatus } = require('../../models/ShopSchema');
 const { ExistingShop } = require('../../middlewares/existingshop.middleware');
 const { ExistingUser } = require('../../middlewares/existinguser.middleware');
 const { Client, AccountStatus, Vendor, ShopAdmin } = require('../../models/ClientSchema');
+const { ProductStatus, Product } = require('../../models/ProductSchema');
 
 const delete_shop=(async(req,res)=>{
     let ip = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress).split(",")[0];
@@ -62,10 +63,24 @@ const flag_shop=async(shop_id)=>{
 
 const delete_shop_schema=async(shop_id)=>{
 	try{
-		const existing_shop = await Shop.findOne({_id: shop_id}).populate('vendors').populate('staff').exec();
+		const existing_shop = await Shop.findOne({_id: shop_id}).populate('vendors').populate('staff').populate('products').exec();
 		const vendors = existing_shop.vendors;
 		const staffs = existing_shop.staff;
-		console.log(staffs);
+		const products = existing_shop.products;
+		console.log(products);
+		/**
+		 * Delete Existing Products from the store
+		 */
+		for(i=0; i<products.length; i++){
+			let id = products[i]?.product_status.toString()
+			await ProductStatus.deleteOne({_id:id});
+			console.log(`pid:${id} deleted` )
+		}
+		for(i=0; i<products.length; i++){
+			let id = products[i]?._id.toString()
+			await Product.deleteOne({_id:id});
+			console.log(`pid:${id} deleted` )
+		}
 		/**
 		 * Delete Existing Vendors from the	store
 		 */

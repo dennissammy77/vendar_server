@@ -10,6 +10,7 @@ const ProductSchema = new mongoose.Schema({
     discount:       { type: Boolean},
     discountprice:  { type: String},
     shop_ref:       { type: String},
+    product_image:  { type: String},
     owner_ref_id:   { type: mongoose.Schema.Types.ObjectId, ref: "Client"},
     // owner ref
     product_status: { type: mongoose.Schema.Types.ObjectId, ref: "Product_Status"},
