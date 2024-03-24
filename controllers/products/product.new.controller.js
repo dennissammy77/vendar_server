@@ -45,7 +45,7 @@ const Create_New_Product = (async(req, res)=>{
             discountprice,
             shop_ref,
             product_image,
-            // owner ref
+            ownerref,// delete
             owner_ref_id,
         });
         existing_shop?.products.push(NewProduct);
