@@ -62,7 +62,7 @@ const create_client_account = (async(req, res)=>{
         welcome_new_user(email_payload);
 		return res.status(200).json({token:Access_Token,error:null,message:'sign up successful'});
 	}catch(err){
-        logger.log('error',`${ip} - System Error`)
+        logger.log('error',`${ip} - System Error: Creating a new account for ${payload?.name}, Tel:${payload?.mobile}, Email:${payload?.email}`)
         return res.sendStatus(500);
 	}
 });

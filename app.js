@@ -26,10 +26,10 @@ app.use('/api/shop',shop_routes);
 app.use('/api/product',product_routes);
 
 app.get('/',(req,res)=>{
-	res.send('Hello This is Vendar server page!! Good Luck Sam!!:)');
+	res.send('Hello This is Vendar server page!! Good Luck!!:)');
 })
 app.get('/protected',AuthenticateToken,(req,res)=>{
-	res.send('Hello This is a protected route!!');
+	res.status(200).send('Hello This is a protected route!!');
 })
 
 module.exports = app;
